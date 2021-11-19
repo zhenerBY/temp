@@ -1,22 +1,21 @@
 from rest_framework import serializers
 
-
 from core.models import ToDo, User, Person
 
 
 class ToDoSerializer(serializers.ModelSerializer):
-    random_number = serializers.SerializerMethodField()
+    # random_number = serializers.SerializerMethodField()
     user_name = serializers.SerializerMethodField()
 
     class Meta:
         model = ToDo
-        fields =[
+        fields = [
             'id',
             'name',
-            # 'description',
+            'description',
             'creator',
-            # 'maker',
-            'random_number',
+            'maker',
+            # 'random_number',
             'user_name',
         ]
 
@@ -30,10 +29,9 @@ class ToDoSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Person
-        fields =[
+        fields = [
             'id',
             'first_name',
             'last_name',
@@ -47,15 +45,13 @@ class ToDoDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ToDo
-        fields =[
+        fields = [
             'id',
             'name',
             'description',
             'creator',
             'maker',
         ]
-
-
 
 
 # class ToDoDetailSerializer(serializers.ModelSerializer):
@@ -72,7 +68,7 @@ class ToDoDetailSerializer(serializers.ModelSerializer):
 class ToDoCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = ToDo
-        fields =[
+        fields = [
             'id',
             'name',
             'description',
@@ -84,10 +80,25 @@ class ToDoCreateSerializer(serializers.ModelSerializer):
 class PersonCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
-        fields =[
+        fields = [
             'id',
             'first_name',
             'last_name',
             'email',
         ]
 
+
+class PresonDetailSerializer(serializers.ModelSerializer):
+    # creator = UserSerializer()
+    # maker = UserSerializer()
+
+    class Meta:
+        model = Person
+        fields = [
+            'id',
+            'first_name',
+            'last_name',
+            'email',
+            'created_todos',
+            'made_todos',
+        ]

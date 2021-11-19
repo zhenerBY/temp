@@ -4,7 +4,7 @@ from rest_framework.response import Response
 
 from core.models import ToDo, Person
 from core.serializers import ToDoSerializer, ToDoDetailSerializer, ToDoCreateSerializer, UserSerializer, \
-    PersonCreateSerializer
+    PersonCreateSerializer, PresonDetailSerializer
 
 
 class ToDoViewSet(viewsets.ModelViewSet):
@@ -38,8 +38,8 @@ class PersonViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
     def get_serializer_class(self):
-        # if self.action == 'retrieve':
-        #     return ToDoDetailSerializer
+        if self.action == 'retrieve':
+            return PresonDetailSerializer
         if self.action == 'create':
             return PersonCreateSerializer
         return UserSerializer
