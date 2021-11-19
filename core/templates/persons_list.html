@@ -1,0 +1,13 @@
+<h1>PERSONS</h1>
+
+<h2>{{ object_list }}</h2>
+<h2>{{ request }}</h2>
+
+<!--<h3>{{ random_number }}</h3>-->
+{% for todo in person_list %}
+    <p>
+        <h2>{{ todo.first_name }}</h2>
+        <h2>{{ todo.last_name }}</h2>
+        <h2>{{ todo.email }}</h2>
+    </p>
+{% endfor %}

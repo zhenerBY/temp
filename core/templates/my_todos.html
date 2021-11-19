@@ -1,0 +1,14 @@
+<h1>TODOS</h1>
+
+<h2>{{ name }}</h2>
+<br>
+<h2>{{ current_user }}</h2>
+<br>
+<h2>{{ object_list }}</h2>
+
+{% for todo in object_list %}
+    <p>
+        <h2>{{ todo.name }}</h2>
+        {{ todo.description }}
+    </p>
+{% endfor %}

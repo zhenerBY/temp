@@ -1,0 +1,13 @@
+<h1>TODOS</h1>
+
+<h2>{{ name }}</h2>
+<h3>{{ random_number }}</h3>
+{% for todo in object_list %}
+    <p>
+        <h2>Имя задачи {{ todo.name }}</h2>
+        <p>Описание задачи {{ todo.description }}</p>
+        <p>Создатель задачи {{ todo.creator }}</p>
+        <p>Исполнитель задачи {{ todo.maker }}</p>
+        <br>
+    </p>
+{% endfor %}
