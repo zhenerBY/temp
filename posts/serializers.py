@@ -1,9 +1,10 @@
+from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
 from .models import Post
 
 
-class ToDoSerializer(serializers.ModelSerializer):
+class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = [
@@ -13,3 +14,10 @@ class ToDoSerializer(serializers.ModelSerializer):
             'body',
             'created_at',
         ]
+
+
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = get_user_model()
+        fields = ('id', 'username',)
