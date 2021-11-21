@@ -8,6 +8,7 @@ from core.models import ToDo, Person
 from core.serializers import ToDoSerializer
 
 
+
 def index(request):
     return HttpResponse('<h1>HELLO WORLD!</h1>')
 

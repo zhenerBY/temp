@@ -6,8 +6,11 @@ from core.models import ToDo, Person
 from core.serializers import ToDoSerializer, ToDoDetailSerializer, ToDoCreateSerializer, UserSerializer, \
     PersonCreateSerializer, PresonDetailSerializer
 
+from core.permissions import IsAuthorOrReadOnly
+
 
 class ToDoViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthorOrReadOnly,)
     queryset = ToDo.objects.all()
     serializer_class = ToDoSerializer
 
@@ -34,6 +37,7 @@ class ToDoViewSet(viewsets.ModelViewSet):
 
 
 class PersonViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthorOrReadOnly,)
     queryset = Person.objects.all()
     serializer_class = UserSerializer
 

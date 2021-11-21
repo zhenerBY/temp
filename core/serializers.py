@@ -91,6 +91,22 @@ class PersonCreateSerializer(serializers.ModelSerializer):
 class PresonDetailSerializer(serializers.ModelSerializer):
     # creator = UserSerializer()
     # maker = UserSerializer()
+    # created_todos = serializers.StringRelatedField(many=True)
+    # created_todos = serializers.HyperlinkedRelatedField(
+    #     many=True,
+    #     read_only=True,
+    #     view_name='todo-detail'
+    # )
+    created_todos = serializers.SlugRelatedField(
+        many=True,
+        read_only=True,
+        slug_field='name'
+     )
+    made_todos = serializers.HyperlinkedRelatedField(
+        many=True,
+        read_only=True,
+        view_name='todo-detail'
+    )
 
     class Meta:
         model = Person
