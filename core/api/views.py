@@ -1,4 +1,4 @@
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, permissions
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
@@ -10,7 +10,8 @@ from core.permissions import IsAuthorOrReadOnly
 
 
 class ToDoViewSet(viewsets.ModelViewSet):
-    permission_classes = (IsAuthorOrReadOnly,)
+    # permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.AllowAny,)
     queryset = ToDo.objects.all()
     serializer_class = ToDoSerializer
 
@@ -24,7 +25,7 @@ class ToDoViewSet(viewsets.ModelViewSet):
     @action(methods=['POST'], detail=True)
     def change_creator(self, *args, **kwargs):
         todo = self.get_object()
-        creator_data = self.request.data.get('crator')
+        creator_data = self.request.data.get('creator')
         if isinstance(creator_data, int):
             creator = Person.objects.get(pk=creator_data)
         else:
@@ -37,7 +38,7 @@ class ToDoViewSet(viewsets.ModelViewSet):
 
 
 class PersonViewSet(viewsets.ModelViewSet):
-    permission_classes = (IsAuthorOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     queryset = Person.objects.all()
     serializer_class = UserSerializer
 
